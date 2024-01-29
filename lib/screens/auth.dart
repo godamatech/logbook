@@ -28,26 +28,32 @@ class _AuthScreenState extends State<AuthScreen> {
     }
 
     _formKey.currentState!.save();
-    if (_isLogin) {
-      //
-    } else {
-      try {
-        final userCredentials = _firebaseAuth.createUserWithEmailAndPassword(
+    try {
+      if (_isLogin) {
+        final userLoginCredentials = _firebaseAuth.signInWithEmailAndPassword(
             email: _enteredEmail, password: _enteredPassword);
-        print(userCredentials);
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'email-already-in-use') {
-          //
-        } else if (e.code == 'invalid-email') {
-          //
-        } else if (e.code == 'operation-not-allowed') {
-          //
-        } else if (e.code == 'weak-password') {}
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(e.message ?? 'Authentication failed')));
-        print(e.message);
-      }
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content:
+                Text('welcome $_enteredEmail! you have successfully login.')));
+        print('welcome $_enteredEmail! you have successfully login.');
+      } else {
+        final userSignupCredentials =
+            _firebaseAuth.createUserWithEmailAndPassword(
+                email: _enteredEmail, password: _enteredPassword);
+        print(userSignupCredentials);
+      } // end of else of _isLogin
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        //
+      } else if (e.code == 'invalid-email') {
+        //
+      } else if (e.code == 'operation-not-allowed') {
+        //
+      } else if (e.code == 'weak-password') {}
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.message ?? 'Authentication failed')));
+      print('$_enteredEmail ${e.message}');
     }
     // print('Email: $_enteredEmail \n Password:$_enteredPassword');
   }
