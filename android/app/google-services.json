@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "120993185277",
+    "project_id": "log-book-802dc",
+    "storage_bucket": "log-book-802dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120993185277:android:35dd92d7b8428160a7ad94",
+        "android_client_info": {
+          "package_name": "com.example.logbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMpFzIO8J-qKjYLM_qs-safl2dlywLMgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
