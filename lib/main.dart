@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:logbook/firebase_options.dart';
 import 'package:logbook/screens/auth.dart';
 import 'package:logbook/screens/profile.dart';
+import 'package:logbook/screens/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,9 +29,14 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SplashScreen();
+          }
+
           if (snapshot.hasData) {
             return const ProfileScreen();
           }
+
           return const AuthScreen();
         },
       ),
